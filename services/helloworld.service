@@ -1,0 +1,11 @@
+[Unit]
+Description=hello world
+Requires=xyz.openbmc_project.EntityManager.service
+After=xyz.openbmc_project.EntityManager.service
+
+[Service]
+ExecStart=/usr/bin/helloworld
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
