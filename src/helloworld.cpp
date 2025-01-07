@@ -1,6 +1,8 @@
 #include <boost/asio/io_service.hpp>
 #include <sdbusplus/asio/connection.hpp>
 #include <sdbusplus/asio/object_server.hpp>
+#include <utils.hpp>
+#include <iostream>
 
 int main()
 {
@@ -11,6 +13,10 @@ int main()
 
     objectServer.add_manager("/xyz/openbmc_project/helloworld/sensors");
     objectServer.add_manager("/xyz/openbmc_project/helloworld/inventory");
+
+    setupManufacturingModeMatch(conn, [](std::string mode){
+        std::cout << "lipb debug : " << mode << std::endl;
+    });
 
     conn->request_name("xyz.openbmc_project.helloworld");
 

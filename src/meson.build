@@ -1,6 +1,7 @@
 executable(
     'helloworld',
     'helloworld.cpp',
+    'utils.cpp',
     dependencies: [
         sdbusplus_dep
     ],
