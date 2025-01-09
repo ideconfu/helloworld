@@ -13,12 +13,12 @@ properties:
           - readonly
       default: "off"
       description: >
-          The speed and duplex.
+          The power status.
 
 enumerations:
     - name: PowerStatusValues
       description: >
-          The speed and duplex enumeration.
+          The power status enumeration.
       values:
           - name: "off"
           - name: "on"
