@@ -1,8 +1,9 @@
 #include <boost/asio/io_service.hpp>
-#include <sdbusplus/asio/connection.hpp>
-#include <sdbusplus/asio/object_server.hpp>
+#include <helloworld.hpp>
 #include <utils.hpp>
+
 #include <iostream>
+#include <memory>
 
 int main()
 {
@@ -14,11 +15,17 @@ int main()
     objectServer.add_manager("/xyz/openbmc_project/helloworld/sensors");
     objectServer.add_manager("/xyz/openbmc_project/helloworld/inventory");
 
-    setupManufacturingModeMatch(conn, [](std::string mode){
+    setupManufacturingModeMatch(conn, [](std::string mode) {
         std::cout << "lipb debug : " << mode << std::endl;
     });
 
     conn->request_name("xyz.openbmc_project.helloworld");
+
+    auto hello_ptr =
+        std::make_unique<Power>(conn, "/xyz/openbmc_project/helloworld/power");
+
+    hello_ptr->powerStatus(static_cast<PowerStatusInterface::PowerStatusValues>(1));
+    hello_ptr->name("CRPS2000NC");
 
     io.run();
 

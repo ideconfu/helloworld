@@ -13,6 +13,10 @@ project(
   )
 
 sdbusplus_dep = dependency('sdbusplus')
+sdbuspp = find_program('sdbus++')
 
+hello_inc = include_directories('.')
+
+subdir('xyz/openbmc_project/Power/PowerStatus')
 subdir('src')
 subdir('services')

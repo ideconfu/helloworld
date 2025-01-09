@@ -1,0 +1,24 @@
+description: >
+    Provide the Power Status of the power interface.
+properties:
+    - name: Name
+      type: string
+      flags:
+          - readonly
+      description: >
+          The Power Name.
+    - name: PowerStatus
+      type: enum[self.PowerStatusValues]
+      flags:
+          - readonly
+      default: "off"
+      description: >
+          The speed and duplex.
+
+enumerations:
+    - name: PowerStatusValues
+      description: >
+          The speed and duplex enumeration.
+      values:
+          - name: "off"
+          - name: "on"
